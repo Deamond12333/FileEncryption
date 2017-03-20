@@ -2,6 +2,7 @@
 using System.IO;
 using System.Drawing;
 using System.Text;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace FileEncryption
@@ -57,7 +58,7 @@ namespace FileEncryption
                         int streamLength = (int)fileStream.Length;
                         byte[] buffer = new byte[streamLength];
                         fileStream.Read(buffer, 0, streamLength);
-                        openFile.Text = Encoding.UTF8.GetString(buffer);
+                        openFile.Text = decryptFunc(qurLogin + "@" + level, Encoding.UTF8.GetString(buffer));
                         fileStream.Close();
                     }
                 }
@@ -82,22 +83,26 @@ namespace FileEncryption
                 return;
             }
 
-            saveFile.Text = null;
+            saveFile.Text = encryptFunc(encryptKey.Text, openFile.Text);
+        }
 
-            char[] key = encryptKey.Text.ToCharArray();
+        private string encryptFunc(string encryptKey, string text)
+        {
+            string result = "";
             int k = 0, i = 0;
 
-            while (i < openFile.Text.Length)
+            while (i < text.Length)
             {
-                int symb = (int)openFile.Text[i];
-                int encrypt = ((int)key[k] + symb) % (int)resolution.Value;
-                saveFile.Text += (char)encrypt;
+                int symb = (int)text[i];
+                int encrypt = ((int)encryptKey[k] + symb) % 100000000;
+                result += (char)encrypt;
 
-                if (k < key.Length - 1) k++;
+                if (k < encryptKey.Length - 1) k++;
                 else k = 0;
 
                 i++;
             }
+            return result;
         }
 
         private void save_Click(object sender, EventArgs e)
@@ -120,7 +125,7 @@ namespace FileEncryption
             {
                 if ((fileStream = saveFileDialog.OpenFile()) != null)
                 {
-                    byte[] buffer = Encoding.UTF8.GetBytes(saveFile.Text);
+                    byte[] buffer = Encoding.UTF8.GetBytes(encryptFunc(qurLogin + "@" + level, saveFile.Text));
                     fileStream.Write(buffer, 0, buffer.Length);
                     fileStream.Close();
                 }
@@ -141,22 +146,26 @@ namespace FileEncryption
                 return;
             }
 
-            saveFile.Text = null;
+            saveFile.Text = decryptFunc(encryptKey.Text, openFile.Text);     
+        }
 
-            char[] key = encryptKey.Text.ToCharArray();
+        private string decryptFunc(string encryptKey, string text)
+        {
+            string result = "";
             int k = 0, i = 0;
 
-            while (i < openFile.Text.Length)
+            while (i < text.Length)
             {
-                int symb = (int)openFile.Text[i];
-                int encrypt = (symb - (int)key[k]) % (int)resolution.Value;
-                saveFile.Text += (char)encrypt;
+                int symb = (int)text[i];
+                int encrypt = (symb - (int)encryptKey[k]) % 100000000;
+                result += (char)encrypt;
 
-                if (k < key.Length - 1) k++;
+                if (k < encryptKey.Length - 1) k++;
                 else k = 0;
 
                 i++;
             }
+            return result;
         }
 
         private void permission_settings_Click(object sender, EventArgs e)

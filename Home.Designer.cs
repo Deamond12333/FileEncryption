@@ -38,11 +38,8 @@
             this.saveFile = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.permission_settings = new System.Windows.Forms.Button();
-            this.resolution = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
             this.accessLevel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.resolution)).BeginInit();
             this.SuspendLayout();
             // 
             // open
@@ -76,7 +73,7 @@
             // 
             // encrypt
             // 
-            this.encrypt.Location = new System.Drawing.Point(349, 72);
+            this.encrypt.Location = new System.Drawing.Point(349, 42);
             this.encrypt.Name = "encrypt";
             this.encrypt.Size = new System.Drawing.Size(196, 23);
             this.encrypt.TabIndex = 3;
@@ -86,7 +83,7 @@
             // 
             // decrypt
             // 
-            this.decrypt.Location = new System.Drawing.Point(349, 101);
+            this.decrypt.Location = new System.Drawing.Point(349, 71);
             this.decrypt.Name = "decrypt";
             this.decrypt.Size = new System.Drawing.Size(196, 23);
             this.decrypt.TabIndex = 4;
@@ -114,7 +111,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(349, 130);
+            this.pictureBox1.Location = new System.Drawing.Point(349, 100);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(196, 199);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -132,43 +129,12 @@
             this.permission_settings.UseVisualStyleBackColor = true;
             this.permission_settings.Click += new System.EventHandler(this.permission_settings_Click);
             // 
-            // resolution
-            // 
-            this.resolution.Location = new System.Drawing.Point(417, 41);
-            this.resolution.Maximum = new decimal(new int[] {
-            120000000,
-            0,
-            0,
-            0});
-            this.resolution.Minimum = new decimal(new int[] {
-            256,
-            0,
-            0,
-            0});
-            this.resolution.Name = "resolution";
-            this.resolution.Size = new System.Drawing.Size(128, 20);
-            this.resolution.TabIndex = 10;
-            this.resolution.Value = new decimal(new int[] {
-            100000000,
-            0,
-            0,
-            0});
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(351, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Resolution:";
-            // 
             // accessLevel
             // 
             this.accessLevel.AutoSize = true;
             this.accessLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.accessLevel.ForeColor = System.Drawing.Color.OrangeRed;
-            this.accessLevel.Location = new System.Drawing.Point(349, 341);
+            this.accessLevel.Location = new System.Drawing.Point(349, 302);
             this.accessLevel.Name = "accessLevel";
             this.accessLevel.Size = new System.Drawing.Size(105, 16);
             this.accessLevel.TabIndex = 12;
@@ -180,8 +146,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(893, 494);
             this.Controls.Add(this.accessLevel);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.resolution);
             this.Controls.Add(this.permission_settings);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.saveFile);
@@ -198,7 +162,6 @@
             this.Text = "File Encryption";
             this.Load += new System.EventHandler(this.Home_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.resolution)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,8 +178,6 @@
         private System.Windows.Forms.TextBox saveFile;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button permission_settings;
-        private System.Windows.Forms.NumericUpDown resolution;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label accessLevel;
     }
 }
